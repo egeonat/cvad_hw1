@@ -1,0 +1,37 @@
+### RL Hyperparameters
+# Maximum steps taken before terminating episode
+episode_max_steps : 5000
+
+# Allowed range for actions:
+action_space : [[0, 8], [-1, 1]]
+
+sensors : ["rgb", "gps", "imu"]
+features : []
+
+# Environment settings
+fps : 20
+server_port : 2000
+num_vehicles : 0
+num_walkers : 0
+# If ego_spawn_point_idx is None we get random spawn points, otherwise it is always fixed
+ego_spawn_point_idx :
+random_maps : false
+dynamic_weather : false
+# Used to pick map if random_maps is false
+map : "/Game/Carla/Maps/Town01"
+dense_wp_interval : 2.0
+sparse_wp_interval : 30.0
+lane_dist_limit : 4.0
+route_dist_limit : 10.0
+# If action size is 1, steering is always straight
+action_size : 2
+speed_limit : 5
+# In debug mode waypoints are drawn in the CARLA world as arrows
+debug : false
+
+# Reward weights
+reward_weights:
+    speed_reward : 1.0
+    lane_dist_reward : 1.0
+    route_angle_reward : 1.0
+    steering_reward : 0.2

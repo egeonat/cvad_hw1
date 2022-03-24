@@ -1,0 +1,85 @@
+experiment_name : "td3"
+### RL Hyperparameters
+# Maximum number of samples to be held in the replay buffer
+replay_buffer_size : 500000
+# Required number of new samples to do an update
+update_every : 400
+# Maximum steps taken before terminating episode
+episode_max_steps : 5000
+# Batch size sampled from replay buffer
+batch_size : 1000
+# Reward discount
+discount : 0.95
+# How many steps should pass before first update
+no_update_steps : 20000
+# How many initial steps should be exploration
+exploration_steps : 50000
+# How many steps should be augmented after exploration is done
+augment_steps : 0
+# How many steps should pass between each evaluation of our target policy
+evaluation_interval : 20000
+# How many steps should pass between each save of our checkpoints
+save_interval : 10000
+
+# Allowed range for actions:
+action_space : [[-1, 1], [-1, 1]]
+
+# Q network hyperparameters
+# Type of q to use
+q_type : "mlp"
+q_lr : 0.0002
+q_clip_grad_norm :
+
+# Policy network hyperparameters
+# Type of policy to use
+policy_type : "mlp"
+p_lr : 0.0004
+p_clip_grad_norm :
+
+### Feature extractor hyperparameters
+# Type of feature extractor to use
+feature_extractor_type : "blind"
+sensors : ["rgb", "gps", "imu"]
+features : []
+
+# What kind of exploration strategy we use at the start
+explorer_type : "smart"
+# What kind of augmenter we use to modify policy actions
+augmenter_type : "dummy"
+# What kind of controller we use to convert policy actions to carla controls
+controller_type : "dummy"
+# Visualizer type
+visualizer_type : "rl"
+
+# Environment settings
+fps : 20
+server_port : 2000
+num_vehicles : 0
+num_walkers : 0
+# If ego_spawn_point_idx is None we get random spawn points, otherwise it is always fixed
+ego_spawn_point_idx :
+random_maps : false
+dynamic_weather : false
+# Used to pick map if random_maps is false
+map : "/Game/Carla/Maps/Town01"
+dense_wp_interval : 2.0
+sparse_wp_interval : 30.0
+lane_dist_limit : 4.0
+route_dist_limit : 10.0
+# If action size is 1, steering is always straight
+action_size : 2
+speed_limit : 5
+# In debug mode waypoints are drawn in the CARLA world as arrows
+debug : false
+
+### TD3 hyperparameters ###
+# Required number of q updates before updating the policy
+policy_delay : 2
+# Polyak averaging weight
+polyak : 0.995
+# Stddev used for injecting noise to actions during data collection
+policy_noise : 0.1
+# Stddev used for injecting noise to actions during q_loss computation
+target_policy_noise : 0.2
+# Maximum noise to be injected to actions during q_loss computation
+target_policy_max_noise : 0.5
