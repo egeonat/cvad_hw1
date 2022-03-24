@@ -61,15 +61,18 @@ class Env():
         # Otherwise we print an error
         sleep(4)
         print("Creating client")
+        counter = 0
         while not client_is_initialized:
             try:
+                counter += 1
                 self.client = carla.Client("localhost", server_port)
-                self.client.set_timeout(10.0)
+                self.client.set_timeout(20.0)
                 self._world = self.client.get_world()
                 client_is_initialized = True
             except RuntimeError as err:
-                print(err)
-                print("Trying again...")
+                if counter > 3:
+                    print(err)
+                    print("Trying again...")
 
     def make_tm(self):
         print("Creating tm")
@@ -203,8 +206,8 @@ class Env():
     def __exit__(self, exc_type, exc_value, exc_traceback):
         try:
             print("Exiting...")
-            func_timeout(5, self._cleanup)
-            func_timeout(5, self._set_synchronous_mode, (False,))
+            func_timeout(10, self._cleanup)
+            func_timeout(10, self._set_synchronous_mode, (False,))
             kill_carla_server()
         except FunctionTimedOut:
             print("Timeout while attempting to set CARLA to async mode.")

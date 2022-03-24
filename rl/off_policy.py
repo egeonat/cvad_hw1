@@ -322,7 +322,7 @@ class BaseOffPolicy(ABC):
 
     def _reset_env(self):
         try:
-            state, _, is_terminal = func_timeout(20, self.env.reset)
+            state, _, is_terminal = func_timeout(30, self.env.reset)
         except FunctionTimedOut:
             print("\nEnv.reset did not return.")
             raise

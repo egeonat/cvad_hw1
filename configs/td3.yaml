@@ -49,7 +49,7 @@ augmenter_type : "dummy"
 # What kind of controller we use to convert policy actions to carla controls
 controller_type : "dummy"
 # Visualizer type
-visualizer_type : "rl"
+visualizer_type : "dummy"
 
 # Environment settings
 fps : 20
