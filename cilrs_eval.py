@@ -15,14 +15,15 @@ class Evaluator():
         # Your code here
         pass
 
-    def generate_action(rgb, command):
+    def generate_action(rgb, command, speed):
         # Your code here
         pass
 
     def take_step(self, state):
         rgb = state["rgb"]
         command = state["command"]
-        throttle, steer, brake = self.generate_action(rgb, command)
+        speed = state["speed"]
+        throttle, steer, brake = self.generate_action(rgb, command, speed)
         action = {
             "throttle": throttle,
             "brake": brake,
