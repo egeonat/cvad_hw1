@@ -51,7 +51,7 @@ class TD3(BaseOffPolicy):
         # Take step
         new_state, reward_dict, is_terminal = self._take_step(state, action)
 
-        new_features = self._extract_features(state)
+        new_features = self._extract_features(new_state)
 
         # Prepare everything for storage
         stored_features = [f.detach().cpu().squeeze(0) for f in features]
